@@ -65,7 +65,7 @@ Blockly.Arduino['motor'] = function(block) {
     var direction = block.getFieldValue('degree') || '0'; // Direction can be 0 or 1
 
     // Generate the Arduino code
-    var code = 'controlMotor(' + motorNum + ', ' + speed + ', ' + direction + ');\n';
+    var code = 'motor(' + motorNum + ', ' + speed + ', ' + direction + ');\n';
     
     // Return the code for motor control
     return code;
