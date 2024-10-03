@@ -16,17 +16,13 @@ goog.require('Blockly.Arduino');
 //     // Return the complete Arduino code with the appropriate formatting
 //     return code;
 // };
+
 Blockly.Arduino['readBall'] = function(block) {
-    // Get the value of the 'ball_sensor_number' input field
-    var ballSensorNumber = Blockly.Arduino.valueToCode(block, 'ball_sensor_number', Blockly.Arduino.ORDER_ATOMIC) || '1'; // Default to 1 if no sensor number is provided
-
-    // Generate the Arduino code for calling the readBall function
-    var code = 'readBall(' + ballSensorNumber + ')';
-    
-    // Return the complete Arduino code
-    return [code, Blockly.Arduino.ORDER_NONE]; // Return as an expression (for using the function in other expressions)
+    var ballSensor_number = block.getFieldValue('ballSensor_number');
+    var code = 'readBall(' + ballSensor_number + ')';
+    return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
-
+  
 Blockly.Arduino['readCompass'] = function(block) {
     // Generate the Arduino code for calling the readCompass function
     var code = 'readCompass()';
@@ -36,8 +32,8 @@ Blockly.Arduino['readCompass'] = function(block) {
 };
 
 Blockly.Arduino['readButton'] = function(block) {
-    // Get the button number (1 or 2)
-    var buttonNumber = Blockly.Arduino.valueToCode(block, 'button_number', Blockly.Arduino.ORDER_ATOMIC) || '1';
+    // Get the button number directly from the field (not using valueToCode)
+    var buttonNumber = block.getFieldValue('button_number') || '1';
 
     // Generate the Arduino code for calling the readButton function
     var code = 'readButton(' + buttonNumber + ')';
@@ -48,7 +44,7 @@ Blockly.Arduino['readButton'] = function(block) {
 
 Blockly.Arduino['readLine'] = function(block) {
     // Get the line number (1, 2, or 3)
-    var lineNumber = Blockly.Arduino.valueToCode(block, 'line_number', Blockly.Arduino.ORDER_ATOMIC) || '1';
+    var lineNumber = block.getFieldValue('line_number') || '1';
 
     // Generate the Arduino code for calling the readLine function
     var code = 'readLine(' + lineNumber + ')';
@@ -56,6 +52,7 @@ Blockly.Arduino['readLine'] = function(block) {
     // Return the complete Arduino code, returning it as part of an expression
     return [code, Blockly.Arduino.ORDER_ATOMIC]; // Return as an expression (since this block outputs a value)
 };
+
 Blockly.Arduino['motor'] = function(block) {
     // Get the selected motor number (1, 2, or 3)
     var motorNum = block.getFieldValue('motor_num').replace('motor', ''); // 'motor1' -> '1'
@@ -65,7 +62,7 @@ Blockly.Arduino['motor'] = function(block) {
     var direction = block.getFieldValue('degree') || '0'; // Direction can be 0 or 1
 
     // Generate the Arduino code
-    var code = 'motor' + motorNum + '( ' + speed + ', ' + direction + ');\n';
+    var code = 'motor' + motorNum + '(' + speed + ', ' + direction + ');\n';
     
     // Return the code for motor control
     return code;

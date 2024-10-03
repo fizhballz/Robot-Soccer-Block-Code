@@ -19,13 +19,12 @@ goog.require('Blockly');
 //     }
 // };
 
-Blockly.Blocks ['readBall'] = {
+Blockly.Blocks['readBall'] = {
     init: function() {
-        this.appendDummyInput()
-            .appendField("Read Ball Sensor")
-            .appendField(new Blockly.FieldNumber(1, 1, 8), 'ball_sensor_number'); // Input field for the sensor number
-        this.setOutput(true, 'Number'); // Block returns a number (the sensor reading)
-        this.setColour(160);
+        this.appendDummyInput('NUMBER')
+        .appendField('ball sensor number')
+        .appendField(new Blockly.FieldNumber(1, 1, 8), 'ballSensor_number'); // Number input restricted to 1-8
+        this.setOutput(true, null);
         this.setTooltip('Reads the value from the specified ball sensor (1-8)');
         this.setHelpUrl('');
     }
@@ -39,7 +38,6 @@ Blockly.Blocks['readCompass'] = {
         this.setOutput(true, 'Number'); // Outputs a number (double)
         this.setTooltip('Reads the compass heading if calibrated');
         this.setHelpUrl('');
-        this.setColour(160); // Set the color to something you prefer
     }
 };  
 
@@ -52,7 +50,6 @@ Blockly.Blocks['readButton'] = {
         this.setOutput(true, 'Number'); // Outputs a number (int)
         this.setTooltip('Reads the state of the specified button (1 or 2)');
         this.setHelpUrl('');
-        this.setColour(160); // Set block color
     }
 };
 
@@ -66,7 +63,6 @@ Blockly.Blocks['readLine'] = {
         this.setOutput(true, 'Number'); // Outputs a number (int/analog value)
         this.setTooltip('Reads the value from the specified line sensor (1, 2, or 3)');
         this.setHelpUrl('');
-        this.setColour(225); // Set block color
     }
 };
 
@@ -87,7 +83,6 @@ Blockly.Blocks['motor'] = {
         this.setNextStatement(true, null);
         this.setTooltip('');
         this.setHelpUrl('');
-        this.setColour(285);
     }
 };
 
@@ -98,7 +93,6 @@ Blockly.Blocks ['void_loop'] = {
         .appendField('run forever');
         this.setTooltip('');
         this.setHelpUrl('');
-        this.setColour(120);
     }
 };
 
@@ -108,7 +102,6 @@ Blockly.Blocks['void_setup'] = {
         .appendField('run once');
         this.setTooltip('');
         this.setHelpUrl('');
-        this.setColour(120);
     }
 };
 
