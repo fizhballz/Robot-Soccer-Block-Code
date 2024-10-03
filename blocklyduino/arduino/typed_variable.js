@@ -23,8 +23,9 @@ Blockly.Arduino['vars_set_int'] = function (block) {
 
 Blockly.Arduino['vars_get_int'] = function (block) {
     var code = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VAR_GET_INT'), Blockly.Variables.NAME_TYPE);
-    return [code, Blockly.Arduino.ORDER_ATOMIC];
+    return [code, Blockly.Arduino.ORDER_ATOMIC];  // Return integer output for use in math blocks
 };
+
 
 Blockly.Arduino['vars_set_float'] = function (block) {
     var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_ASSIGNMENT) || '0';

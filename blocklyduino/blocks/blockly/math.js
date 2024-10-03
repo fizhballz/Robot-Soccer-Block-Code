@@ -20,6 +20,47 @@ goog.provide('Blockly.Constants.MathArduino');
 
 // goog.require('Blockly.Blocks');
 
+Blockly.Blocks['math_arithmetic'] = {
+    /**
+     * Block for basic arithmetic operations: +, -, *, /, and ^ (power).
+     * @this Blockly.Block
+     */
+    init: function () {
+        this.jsonInit({
+            "message0": "%1 %2 %3",  // Horizontal arrangement of inputs
+            "args0": [
+                {
+                    "type": "input_value",  // First number input
+                    "name": "A",
+                    "check": ['Number', 'int', 'float']
+                },
+                {
+                    "type": "field_dropdown",  // Operator dropdown
+                    "name": "OP",
+                    "options": [
+                        ['+', 'ADD'],
+                        ['-', 'MINUS'],
+                        ['*', 'MULTIPLY'],
+                        ['/', 'DIVIDE'],
+                        ['^', 'POWER']
+                    ]
+                },
+                {
+                    "type": "input_value",  // Second number input
+                    "name": "B",
+                    "check": ['Number', 'int', 'float']
+                }
+            ],
+            "inputsInline": true,  // Ensure inputs are placed inline (horizontally)
+            "output": "Number",
+            "style": "math_blocks",
+            "tooltip": "Perform basic arithmetic operations.",
+            "helpUrl": ""
+        });
+    }
+};
+
+
 Blockly.Blocks['math_single'] = {
     /**
      * Block for advanced math operators with single operand.
@@ -42,7 +83,7 @@ Blockly.Blocks['math_single'] = {
                 {
                     "type": "input_value",
                     "name": "NUM",
-                    "check": "Number"
+                    "check": 'Number'
                 }
             ],
             "output": "Number",
@@ -55,7 +96,7 @@ Blockly.Blocks['math_single'] = {
             var mode = thisBlock.getFieldValue('OP');
             var TOOLTIPS = {
                 'ROOT': Blockly.Msg.MATH_SINGLE_TOOLTIP_ROOT,
-                'ABS': Blockly.Msg.MATH_SINGLE_TOOLTIP_ABS,
+                'ABS': Blockly.Msg.MATH_SINGLE_TOOLTIP_AwBS,
                 'NEG': Blockly.Msg.MATH_SINGLE_TOOLTIP_NEG,
                 'POW10': Blockly.Msg.MATH_SINGLE_TOOLTIP_POW10
             };
@@ -151,7 +192,7 @@ Blockly.Blocks['math_number_property'] = {
                     [Blockly.Msg.MATH_IS_DIVISIBLE_BY, 'DIVISIBLE_BY']];
         this.setStyle("math_blocks");
         this.appendValueInput('NUMBER_TO_CHECK')
-                .setCheck('Number');
+                .setCheck(['Number','int','float']);
         var dropdown = new Blockly.FieldDropdown(PROPERTIES, function (option) {
             var divisorInput = (option == 'DIVISIBLE_BY');
             this.sourceBlock_.updateShape_(divisorInput);
@@ -194,7 +235,7 @@ Blockly.Blocks['math_number_property'] = {
         if (divisorInput) {
             if (!inputExists) {
                 this.appendValueInput('DIVISOR')
-                        .setCheck('Number');
+                        .setCheck(['Number','int','float']);
             }
         } else if (inputExists) {
             this.removeInput('DIVISOR');

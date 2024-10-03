@@ -25,24 +25,25 @@ Blockly.Arduino['math_number'] = function (block) {
 };
 
 Blockly.Arduino['math_arithmetic'] = function (block) {
-    // Basic arithmetic operators, and power.
     var OPERATORS = {
         'ADD': [' + ', Blockly.Arduino.ORDER_ADDITIVE],
         'MINUS': [' - ', Blockly.Arduino.ORDER_ADDITIVE],
         'MULTIPLY': [' * ', Blockly.Arduino.ORDER_MULTIPLICATIVE],
         'DIVIDE': [' / ', Blockly.Arduino.ORDER_MULTIPLICATIVE],
-        'POWER': [null, Blockly.Arduino.ORDER_NONE]  // Handle power separately.
+        'POWER': [null, Blockly.Arduino.ORDER_NONE]  // Handle power separately
     };
     var mode = block.getFieldValue('OP');
     var tuple = OPERATORS[mode];
     var operator = tuple[0];
     var order = tuple[1];
+    
+    // Get the values of the two arguments (these can be numbers or variables)
     var argument0 = Blockly.Arduino.valueToCode(block, 'A', order) || '0';
     var argument1 = Blockly.Arduino.valueToCode(block, 'B', order) || '0';
+    
     var code;
-    // Power in Arduino requires a special case since it has no operator.
     if (!operator) {
-        code = 'pow(' + argument0 + ', ' + argument1 + ')';
+        code = 'pow(' + argument0 + ', ' + argument1 + ')';  // Special case for power
         return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
     }
     code = argument0 + operator + argument1;

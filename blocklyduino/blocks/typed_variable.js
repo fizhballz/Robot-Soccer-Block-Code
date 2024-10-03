@@ -14,36 +14,32 @@
 goog.provide('Blockly.Constants.VariablesTyped');
 
 Blockly.Blocks['vars_set_int'] = {
-    init: function () {
+    init: function() {
         this.appendValueInput("VALUE")
-                .appendField("🔢 set")
-                .appendField(new Blockly.FieldVariable("", null, ['int'], 'int'), "VAR_SET_INT")
-                .appendField("to")
-                .setCheck(intCompatibility);
+            .appendField("set")
+            .appendField(new Blockly.FieldVariable("", null, ['int'], 'int'), 'VAR_SET_INT')
+            .appendField('to')
+            .setCheck(intCompatibility);  // Ensure the input is treated as a number
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setStyle('variable_blocks');
-        this.setTooltip("");
-        this.setHelpUrl("");
     }
 };
 
 Blockly.Blocks['vars_get_int'] = {
-    init: function () {
+    init: function() {
         this.appendDummyInput()
-                .appendField(new Blockly.FieldVariable("", null, ['int'], 'int'), "VAR_GET_INT");
-        this.setOutput(true, "int");
+            .appendField(new Blockly.FieldVariable("", null, ['int'], 'int'), 'VAR_GET_INT');
+        this.setOutput(true, 'int');  // Explicitly set the output as a number
         this.setStyle('variable_blocks');
-        this.setTooltip("");
-        this.setHelpUrl("");
     }
 };
 
 Blockly.Blocks['vars_set_float'] = {
     init: function () {
         this.appendValueInput("VALUE")
-                .appendField("❟ set")
-                .appendField(new Blockly.FieldVariable("", null, ['float'], 'float'), "VAR_SET_FLOAT")
+                .appendField("set")
+                .appendField(new Blockly.FieldVariable("", null, ['float'], 'float'), 'VAR_SET_FLOAT')
                 .appendField("to")
                 .setCheck(floatCompatibility);
         this.setPreviousStatement(true, null);
@@ -57,8 +53,8 @@ Blockly.Blocks['vars_set_float'] = {
 Blockly.Blocks['vars_get_float'] = {
     init: function () {
         this.appendDummyInput()
-                .appendField(new Blockly.FieldVariable("", null, ['float'], 'float'), "VAR_GET_FLOAT");
-        this.setOutput(true, "float");
+                .appendField(new Blockly.FieldVariable("", null, ['float'], 'float'), 'VAR_GET_FLOAT');
+        this.setOutput(true, 'float');
         this.setStyle('variable_blocks');
         this.setTooltip("");
         this.setHelpUrl("");
@@ -114,20 +110,5 @@ Blockly.Blocks['vars_get_boolean'] = {
         this.setStyle('variable_blocks');
         this.setTooltip("");
         this.setHelpUrl("");
-    }
-};
-
-Blockly.Blocks['goalangle'] = {
-    init: function() {
-        this.appendDummyInput()
-            .setAlign(Blockly.ALIGN_LEFT)
-            .appendField("Set goal angle")
-            .appendField("angle:")
-            .appendField(new Blockly.FieldNumber(0, -180, 180), 'goal_angle');
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setStyle('variable_blocks');
-        this.setTooltip("Sets the goal angle");
-        this.setHelpUrl("https://your-help-url.com");
     }
 };
