@@ -269,3 +269,22 @@ Blockly.Blocks['controls_case_default'] = {
         this.contextMenu = false;
     }
 };
+
+Blockly.Blocks['logic_compare'] = {
+    init: function() {
+        this.appendValueInput("A")
+            .setCheck(null);  // Allow any type of input (numbers, variables, etc.)
+        
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldDropdown([["=", "EQ"], ["≠", "NEQ"], ["<", "LT"], ["≤", "LTE"], [">", "GT"], ["≥", "GTE"]]), "OP");  // Add the operator between arguments
+        
+        this.appendValueInput("B")
+            .setCheck(null);  // Allow any type of input (numbers, variables, etc.)
+
+        this.setInputsInline(true);
+        this.setOutput(true, "Boolean");
+        this.setColour(210);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};

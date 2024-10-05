@@ -15,12 +15,10 @@ goog.provide('Blockly.Arduino.MathArduino');
 
 goog.require('Blockly.Arduino');
 
-
 Blockly.Arduino['math_number'] = function (block) {
-    // Numeric value.
-    var code = parseFloat(block.getFieldValue('NUM'));
-    var order = code >= 0 ? Blockly.Arduino.ORDER_ATOMIC :
-            Blockly.Arduino.ORDER_UNARY_NEGATION;
+    // Numeric value, compatible with integer types.
+    var code = block.getFieldValue('NUM');
+    var order = code >= 0 ? Blockly.Arduino.ORDER_ATOMIC : Blockly.Arduino.ORDER_UNARY_NEGATION;
     return [code, order];
 };
 

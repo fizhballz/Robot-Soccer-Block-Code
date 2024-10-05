@@ -20,6 +20,17 @@ goog.provide('Blockly.Constants.MathArduino');
 
 // goog.require('Blockly.Blocks');
 
+Blockly.Blocks['math_number'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldNumber(0), 'NUM');  // Number input field
+        this.setOutput(true, 'Number');  // Sets this block to output a number
+        this.setStyle('math_blocks');  // Use math block styling
+        this.setTooltip('Returns a numeric value.');
+    }
+};
+
+
 Blockly.Blocks['math_arithmetic'] = {
     /**
      * Block for basic arithmetic operations: +, -, *, /, and ^ (power).
